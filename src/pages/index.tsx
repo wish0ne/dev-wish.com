@@ -2,28 +2,199 @@ import * as React from "react";
 import { Global, css } from "@emotion/react";
 import { Link, type HeadFC, type PageProps, graphql } from "gatsby";
 import Layout from "../components/Layout";
+import { GatsbyImage, getImage } from "gatsby-plugin-image";
 
-const HomePage: React.FC<PageProps> = ({ data }) => {
+type DataProps = {
+  allMdx: {
+    nodes: any[];
+  };
+};
+
+const HomePage = ({ data }: PageProps<DataProps>) => {
   return (
     <Layout>
-      <h1
+      <div
         css={css`
-          font-size: 2rem;
+          display: flex;
+          flex-direction: column;
+          gap: 4rem;
         `}
       >
-        전체 글
-      </h1>
-      {data.allMdx.nodes.map((node) => (
-        <article key={node.id}>
-          <h2>
-            <Link to={`/posts/${node.frontmatter.slug}`}>
-              {node.frontmatter.title}
-            </Link>
-          </h2>
-          <p>Posted: {node.frontmatter.date}</p>
-          <p>{node.excerpt}</p>
-        </article>
-      ))}
+        <div
+          css={css`
+            display: flex;
+            gap: 4rem;
+          `}
+        >
+          <div
+            css={css`
+              /* From https://css.glass */
+              background: rgba(255, 255, 255, 0.3);
+              border-radius: 20px;
+              box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+              backdrop-filter: blur(5px);
+              -webkit-backdrop-filter: blur(5px);
+              border: 1px solid rgba(255, 255, 255, 0.3);
+              padding: 2rem;
+              width: 50%;
+            `}
+          >
+            <h1
+              css={css`
+                font-size: 1.6rem;
+                font-weight: 600;
+                font-style: oblique;
+                margin-bottom: 2rem;
+              `}
+            >
+              All Posts
+            </h1>
+            <div
+              css={css`
+                display: flex;
+                flex-direction: column;
+                gap: 4rem;
+              `}
+            >
+              {data.allMdx.nodes.map((node) => (
+                <Link
+                  to={`/posts/${node.frontmatter.slug}`}
+                  key={node.id}
+                  css={css`
+                    display: flex;
+                    gap: 2rem;
+                  `}
+                >
+                  <GatsbyImage
+                    image={getImage(node.frontmatter.thumbnail_image)}
+                    alt={node.frontmatter.thumbnail_image_alt}
+                    css={css`
+                      flex-shrink: 0;
+                      border-radius: 10px;
+                      box-shadow: rgba(67, 71, 85, 0.27) 0px 0px 0.25em,
+                        rgba(90, 125, 188, 0.05) 0px 0.25em 1em;
+                    `}
+                  />
+                  <div>
+                    <p
+                      css={css`
+                        color: gray;
+                        font-size: 1.2rem;
+                        margin: 0;
+                      `}
+                    >
+                      {node.frontmatter.date}
+                    </p>
+
+                    <div
+                      css={css`
+                        display: flex;
+                        gap: 1rem;
+                        margin-top: 1rem;
+                      `}
+                    >
+                      {node.frontmatter.tags?.split(" ").map((tag: string) => (
+                        <span
+                          key={tag}
+                          css={css`
+                            font-size: 1.4rem;
+                            color: #7c93c3;
+                            background-color: #eef5ff;
+                            padding: 0.4rem;
+                            border-radius: 10px;
+                          `}
+                        >
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+
+                    <h2
+                      css={css`
+                        color: black;
+                      `}
+                    >
+                      {node.frontmatter.title}
+                    </h2>
+                    <p
+                      css={css`
+                        font-size: "1.8rem";
+                        color: black;
+                      `}
+                    >
+                      {node.frontmatter.subtitle}
+                    </p>
+                  </div>
+                </Link>
+              ))}
+            </div>
+          </div>
+
+          <div
+            css={css`
+              /* From https://css.glass */
+              background: rgba(255, 255, 255, 0.3);
+              border-radius: 20px;
+              box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+              backdrop-filter: blur(5px);
+              -webkit-backdrop-filter: blur(5px);
+              border: 1px solid rgba(255, 255, 255, 0.3);
+              padding: 2rem;
+              width: 50%;
+              text-align: center;
+            `}
+          >
+            <h1
+              css={css`
+                font-size: 3rem;
+                color: lightgray;
+              `}
+            >
+              𖦹 ´ ᯅ ` 𖦹
+            </h1>
+            <h1
+              css={css`
+                font-size: 1.8rem;
+                color: gray;
+                font-weight: 600;
+              `}
+            >
+              준비중입니다.
+            </h1>
+          </div>
+        </div>
+        <div
+          css={css`
+            /* From https://css.glass */
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 20px;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            padding: 2rem;
+            text-align: center;
+          `}
+        >
+          <h1
+            css={css`
+              font-size: 3rem;
+              color: lightgray;
+            `}
+          >
+            𖦹 ´ ᯅ ` 𖦹
+          </h1>
+          <h1
+            css={css`
+              font-size: 1.8rem;
+              color: gray;
+              font-weight: 600;
+            `}
+          >
+            준비중입니다.
+          </h1>
+        </div>
+      </div>
     </Layout>
   );
 };
@@ -33,9 +204,17 @@ export const query = graphql`
     allMdx(sort: { frontmatter: { date: DESC } }) {
       nodes {
         frontmatter {
-          date(formatString: "MMMM D, YYYY")
+          date(formatString: "YYYY.MM.DD")
           title
+          subtitle
+          tags
           slug
+          thumbnail_image_alt
+          thumbnail_image {
+            childImageSharp {
+              gatsbyImageData(width: 300)
+            }
+          }
         }
         id
         excerpt
@@ -46,4 +225,14 @@ export const query = graphql`
 
 export default HomePage;
 
-export const Head: HeadFC = () => <title>dev-wish.com</title>;
+export const Head: HeadFC = () => (
+  <>
+    <title>dev-wish.com</title>
+    <link
+      rel="stylesheet"
+      as="style"
+      crossOrigin=""
+      href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css"
+    />
+  </>
+);

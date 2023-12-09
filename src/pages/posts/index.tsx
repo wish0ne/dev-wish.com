@@ -1,10 +1,10 @@
 import * as React from "react";
 import { css } from "@emotion/react";
 import type { HeadFC, PageProps } from "gatsby";
-import Layout from "../components/Layout";
+import Layout from "../../components/Layout";
 import { StaticImage } from "gatsby-plugin-image";
 
-const ResumePage: React.FC<PageProps> = () => {
+const PostPage: React.FC<PageProps> = () => {
   return (
     <Layout>
       <div
@@ -39,6 +39,6 @@ const ResumePage: React.FC<PageProps> = () => {
   );
 };
 
-export default ResumePage;
+export default PostPage;
 
 export const Head: HeadFC = () => <title>dev-wish.com</title>;

@@ -5,6 +5,9 @@ import { Link, type HeadFC, type PageProps } from "gatsby";
 const globalStyles = css`
   html {
     font-size: 62.5%;
+    background-color: #fbfbfb;
+    height: 100%;
+    background: rgb(247, 247, 252);
   }
 
   button {
@@ -17,19 +20,14 @@ const globalStyles = css`
     font-size: 1.4rem;
   }
 
-  @font-face {
-    font-family: "Pretendard-Regular";
-    src: url("https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff")
-      format("woff");
-    font-weight: 400;
-    font-style: normal;
-  }
   body {
-    font-family: "Pretendard-Regular", -apple-system, Roboto, sans-serif, serif;
+    font-family: "Pretendard Variable", -apple-system, Roboto, sans-serif, serif;
+    margin: 10rem 4rem;
+    height: 100%;
   }
 `;
 
-const GlobalStyles: React.FC<PageProps> = () => {
+const GlobalStyles = () => {
   return <Global styles={globalStyles} />;
 };
 

@@ -1,16 +1,19 @@
 import * as React from "react";
 import { Global, css } from "@emotion/react";
-import { Link, useStaticQuery, graphql } from "gatsby";
+import { Link, useStaticQuery, graphql, HeadFC } from "gatsby";
 import GlobalStyles from "./GlobalStyles";
 
 const pageStyles = {
   color: "#232129",
-  padding: 64,
   height: "100%",
   // fontFamily: "-apple-system, Roboto, sans-serif, serif",
 };
 
-const Layout = ({ children }) => {
+interface Props {
+  children: React.ReactNode;
+}
+
+const Layout = ({ children }: Props) => {
   const data = useStaticQuery(graphql`
     query {
       site {
@@ -27,14 +30,23 @@ const Layout = ({ children }) => {
       <div>
         <header
           css={css`
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
             display: flex;
             justify-content: space-between;
             flex: 1;
+            padding: 2rem;
+            box-shadow: rgba(17, 17, 26, 0.1) 0px 1px 0px;
+            background-color: white;
           `}
         >
           <div
             css={css`
-              font-weight: bold;
+              font-weight: 700;
+              font-style: oblique;
+              font-size: 2rem;
             `}
           >
             {data.site.siteMetadata.title}
@@ -42,6 +54,13 @@ const Layout = ({ children }) => {
           <nav
             css={css`
               justify-content: space-between;
+              display: flex;
+              align-items: center;
+              gap: 2rem;
+
+              & a {
+                color: black;
+              }
             `}
           >
             <Link
@@ -52,13 +71,14 @@ const Layout = ({ children }) => {
             >
               Home
             </Link>
-            <button
+            <Link
+              to="/posts"
               css={css`
                 font-weight: bold;
               `}
             >
               Post
-            </button>
+            </Link>
             <Link
               to="/resume"
               css={css`
@@ -77,3 +97,15 @@ const Layout = ({ children }) => {
 };
 
 export default Layout;
+
+export const Head: HeadFC = () => (
+  <>
+    <title>dev-wish.com</title>
+    <link
+      rel="stylesheet"
+      as="style"
+      crossOrigin=""
+      href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css"
+    />
+  </>
+);
