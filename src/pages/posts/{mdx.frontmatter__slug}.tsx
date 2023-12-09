@@ -4,6 +4,7 @@ import { graphql, PageProps } from "gatsby";
 import { GatsbyImage, getImage, IGatsbyImageData } from "gatsby-plugin-image";
 import { css } from "@emotion/react";
 import Toc from "../../components/Toc";
+import Comments from "../../components/Comments";
 
 interface toc {
   title: string;
@@ -206,6 +207,7 @@ const BlogPost = ({ data, children }: PageProps<DataProps>) => {
           >
             {children}
           </main>
+          <Comments />
         </div>
         <Toc tableOfContents={data.mdx.tableOfContents} />
       </div>
