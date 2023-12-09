@@ -1,18 +1,42 @@
 import * as React from "react";
 import Layout from "../../components/Layout";
-import { graphql } from "gatsby";
-import { GatsbyImage, getImage } from "gatsby-plugin-image";
+import { graphql, PageProps } from "gatsby";
+import { GatsbyImage, getImage, IGatsbyImageData } from "gatsby-plugin-image";
 import { css } from "@emotion/react";
+import Toc from "../../components/Toc";
 
-const BlogPost = ({ data, children }) => {
+interface toc {
+  title: string;
+  url: string;
+  items?: toc[];
+}
+
+type DataProps = {
+  mdx: {
+    frontmatter: {
+      thumbnail_image: IGatsbyImageData;
+      tags: string;
+      title: string;
+      date: string;
+      thumbnail_image_alt: string;
+      thumbnail_image_credit_link: string;
+      thumbnail_image_credit_text: string;
+    };
+    tableOfContents: {
+      items: toc[];
+    };
+  };
+};
+
+const BlogPost = ({ data, children }: PageProps<DataProps>) => {
   const image = getImage(data.mdx.frontmatter.thumbnail_image);
 
   return (
-    <Layout css={css``}>
+    <Layout>
       <div
         css={css`
           display: flex;
-          gap: 2rem;
+          gap: 10rem;
         `}
       >
         <div
@@ -71,7 +95,9 @@ const BlogPost = ({ data, children }) => {
             <GatsbyImage
               css={css`
                 border-radius: 10px;
-                margin: 2rem 0 0;
+                margin: 2rem auto 0;
+                width: 80%;
+                display: block;
               `}
               image={image}
               alt={data.mdx.frontmatter.thumbnail_image_alt}
@@ -181,31 +207,7 @@ const BlogPost = ({ data, children }) => {
             {children}
           </main>
         </div>
-        <aside
-          css={css`
-            /* From https://css.glass */
-            background: rgba(255, 255, 255, 0.2);
-            border-radius: 20px;
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-            backdrop-filter: blur(5px);
-            -webkit-backdrop-filter: blur(5px);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            padding: 2rem;
-            font-size: 1.8rem;
-            line-height: 3rem;
-            word-wrap: break-word;
-          `}
-        >
-          {data.mdx.tableOfContents.items.map(
-            (items: { url: string; title: string }) => {
-              return (
-                <a href={items.url} key={items.title}>
-                  <h3>{items.title}</h3>
-                </a>
-              );
-            }
-          )}
-        </aside>
+        <Toc tableOfContents={data.mdx.tableOfContents} />
       </div>
     </Layout>
   );
@@ -232,7 +234,7 @@ export const query = graphql`
   }
 `;
 
-export const Head = ({ data }) => (
+export const Head = ({ data }: PageProps<DataProps>) => (
   <>
     <title>{data.mdx.frontmatter.title}</title>
     <link

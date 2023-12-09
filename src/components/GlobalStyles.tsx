@@ -8,6 +8,7 @@ const globalStyles = css`
     background-color: #fbfbfb;
     height: 100%;
     background: rgb(247, 247, 252);
+    scroll-padding-top: 10rem;
   }
 
   button {
@@ -22,7 +23,6 @@ const globalStyles = css`
 
   body {
     font-family: "Pretendard Variable", -apple-system, Roboto, sans-serif, serif;
-    margin: 10rem 4rem;
     height: 100%;
   }
 `;

@@ -16,13 +16,16 @@ const HomePage = ({ data }: PageProps<DataProps>) => {
       <div
         css={css`
           display: grid;
-          grid-template-columns: repeat(auto-fill, minmax(50%, auto));
           gap: 4rem;
         `}
       >
         <div
           css={css`
-            display: flex;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            @media (max-width: 1200px) {
+              grid-template-columns: 1fr;
+            }
             gap: 4rem;
           `}
         >
@@ -36,7 +39,6 @@ const HomePage = ({ data }: PageProps<DataProps>) => {
               -webkit-backdrop-filter: blur(5px);
               border: 1px solid rgba(255, 255, 255, 0.3);
               padding: 2rem;
-              width: 50%;
             `}
           >
             <h1
@@ -56,77 +58,86 @@ const HomePage = ({ data }: PageProps<DataProps>) => {
                 gap: 4rem;
               `}
             >
-              {data.allMdx.nodes.map((node) => (
-                <Link
-                  to={`/posts/${node.frontmatter.slug}`}
-                  key={node.id}
-                  css={css`
-                    display: flex;
-                    gap: 2rem;
-                  `}
-                >
-                  <GatsbyImage
-                    image={getImage(node.frontmatter.thumbnail_image)}
-                    alt={node.frontmatter.thumbnail_image_alt}
+              {data.allMdx.nodes.map((node) => {
+                const image = getImage(node.frontmatter.thumbnail_image);
+                return (
+                  <Link
+                    to={`/posts/${node.frontmatter.slug}`}
+                    key={node.id}
                     css={css`
-                      flex-shrink: 0;
-                      border-radius: 10px;
-                      box-shadow: rgba(67, 71, 85, 0.27) 0px 0px 0.25em,
-                        rgba(90, 125, 188, 0.05) 0px 0.25em 1em;
+                      display: flex;
+                      @media (max-width: 550px) {
+                        flex-direction: column;
+                      }
+                      gap: 2rem;
                     `}
-                  />
-                  <div>
-                    <p
-                      css={css`
-                        color: gray;
-                        font-size: 1.2rem;
-                        margin: 0;
-                      `}
-                    >
-                      {node.frontmatter.date}
-                    </p>
+                  >
+                    {image && (
+                      <GatsbyImage
+                        image={image}
+                        alt={node.frontmatter.thumbnail_image_alt}
+                        css={css`
+                          border-radius: 10px;
+                          box-shadow: rgba(67, 71, 85, 0.27) 0px 0px 0.25em,
+                            rgba(90, 125, 188, 0.05) 0px 0.25em 1em;
+                        `}
+                      />
+                    )}
+                    <div>
+                      <p
+                        css={css`
+                          color: gray;
+                          font-size: 1.2rem;
+                          margin: 0;
+                        `}
+                      >
+                        {node.frontmatter.date}
+                      </p>
 
-                    <div
-                      css={css`
-                        display: flex;
-                        gap: 1rem;
-                        margin-top: 1rem;
-                      `}
-                    >
-                      {node.frontmatter.tags?.split(" ").map((tag: string) => (
-                        <span
-                          key={tag}
-                          css={css`
-                            font-size: 1.4rem;
-                            color: #7c93c3;
-                            background-color: #eef5ff;
-                            padding: 0.4rem;
-                            border-radius: 10px;
-                          `}
-                        >
-                          {tag}
-                        </span>
-                      ))}
+                      <div
+                        css={css`
+                          display: flex;
+                          gap: 1rem;
+                          margin-top: 1rem;
+                        `}
+                      >
+                        {node.frontmatter.tags
+                          ?.split(" ")
+                          .map((tag: string) => (
+                            <span
+                              key={tag}
+                              css={css`
+                                font-size: 1.4rem;
+                                color: #7c93c3;
+                                background-color: #eef5ff;
+                                padding: 0.4rem;
+                                border-radius: 10px;
+                              `}
+                            >
+                              {tag}
+                            </span>
+                          ))}
+                      </div>
+
+                      <h2
+                        css={css`
+                          color: black;
+                        `}
+                      >
+                        {node.frontmatter.title}
+                      </h2>
+                      <p
+                        css={css`
+                          font-size: "1.8rem";
+                          color: black;
+                        `}
+                      >
+                        {node.frontmatter.subtitle}
+                      </p>
                     </div>
-
-                    <h2
-                      css={css`
-                        color: black;
-                      `}
-                    >
-                      {node.frontmatter.title}
-                    </h2>
-                    <p
-                      css={css`
-                        font-size: "1.8rem";
-                        color: black;
-                      `}
-                    >
-                      {node.frontmatter.subtitle}
-                    </p>
-                  </div>
-                </Link>
-              ))}
+                  </Link>
+                );
+              })}
             </div>
           </div>
 
@@ -139,7 +150,6 @@ const HomePage = ({ data }: PageProps<DataProps>) => {
               -webkit-backdrop-filter: blur(5px);
               border: 1px solid rgba(255, 255, 255, 0.3);
               padding: 2rem;
-              width: 50%;
               text-align: center;
             `}
           >

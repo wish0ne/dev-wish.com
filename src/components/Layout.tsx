@@ -27,7 +27,11 @@ const Layout = ({ children }: Props) => {
   return (
     <div style={pageStyles}>
       <GlobalStyles />
-      <div>
+      <div
+        css={css`
+          scroll-padding-top: 10rem;
+        `}
+      >
         <header
           css={css`
             position: fixed;
@@ -40,6 +44,7 @@ const Layout = ({ children }: Props) => {
             padding: 2rem;
             box-shadow: rgba(17, 17, 26, 0.1) 0px 1px 0px;
             background-color: white;
+            z-index: 10;
           `}
         >
           <div
@@ -90,7 +95,15 @@ const Layout = ({ children }: Props) => {
           </nav>
         </header>
       </div>
-      <main>{children}</main>
+      <main
+        css={css`
+          margin: 10rem 4rem;
+          scroll-padding-top: 10rem;
+          scroll-margin-top: 10rem;
+        `}
+      >
+        {children}
+      </main>
       <footer>{/* Add your footer content here */}</footer>
     </div>
   );
@@ -101,11 +114,5 @@ export default Layout;
 export const Head: HeadFC = () => (
   <>
     <title>dev-wish.com</title>
-    <link
-      rel="stylesheet"
-      as="style"
-      crossOrigin=""
-      href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css"
-    />
   </>
 );
