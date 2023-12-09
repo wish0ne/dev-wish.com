@@ -15,8 +15,8 @@ const HomePage = ({ data }: PageProps<DataProps>) => {
     <Layout>
       <div
         css={css`
-          display: flex;
-          flex-direction: column;
+          display: grid;
+          grid-template-columns: repeat(auto-fill, minmax(50%, auto));
           gap: 4rem;
         `}
       >
@@ -132,7 +132,6 @@ const HomePage = ({ data }: PageProps<DataProps>) => {
 
           <div
             css={css`
-              /* From https://css.glass */
               background: rgba(255, 255, 255, 0.3);
               border-radius: 20px;
               box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);

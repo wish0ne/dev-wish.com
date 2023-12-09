@@ -6,49 +6,206 @@ import { css } from "@emotion/react";
 
 const BlogPost = ({ data, children }) => {
   const image = getImage(data.mdx.frontmatter.thumbnail_image);
+
   return (
-    <Layout>
+    <Layout css={css``}>
       <div
         css={css`
-          width: 70%;
-          /* From https://css.glass */
-          background: rgba(255, 255, 255, 0.2);
-          border-radius: 20px;
-          box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-          backdrop-filter: blur(5px);
-          -webkit-backdrop-filter: blur(5px);
-          border: 1px solid rgba(255, 255, 255, 0.3);
-          padding: 2rem;
-          margin: 0 auto;
-          padding: 2rem;
-          font-size: 1.8rem;
-          line-height: 3rem;
-          word-wrap: break-word;
-
-          & img {
-            width: 60%;
-            display: block;
-            border-radius: 20px;
-            margin: 0 auto;
-            box-shadow: rgba(0, 0, 0, 0.1) -4px 9px 25px -6px;
-          }
+          display: flex;
+          gap: 2rem;
         `}
       >
-        <h1>{data.mdx.frontmatter.title}</h1>
-        <p>{data.mdx.frontmatter.date}</p>
-        <GatsbyImage
-          css={css``}
-          image={image}
-          alt={data.mdx.frontmatter.thumbnail_image_alt}
-        />
+        <div
+          css={css`
+            width: 70%;
+            /* From https://css.glass */
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            padding: 2rem;
+          `}
+        >
+          <h1
+            css={css`
+              font-weight: 600;
+              font-size: 2.8rem;
+            `}
+          >
+            {data.mdx.frontmatter.title}
+          </h1>
+          <p
+            css={css`
+              color: gray;
+              font-size: 1.4rem;
+            `}
+          >
+            {data.mdx.frontmatter.date}
+          </p>
+          <div
+            css={css`
+              display: flex;
+              gap: 1rem;
+              margin-top: 1rem;
+            `}
+          >
+            {data.mdx.frontmatter.tags?.split(" ").map((tag: string) => (
+              <span
+                key={tag}
+                css={css`
+                  font-size: 1.4rem;
+                  color: #7c93c3;
+                  background-color: #eef5ff;
+                  padding: 0.4rem;
+                  border-radius: 10px;
+                `}
+              >
+                {tag}
+              </span>
+            ))}
+          </div>
 
-        <p>
-          Photo Credit:{" "}
-          <a href={data.mdx.frontmatter.thumbnail_image_credit_link}>
-            {data.mdx.frontmatter.thumbnail_image_credit_text}
-          </a>
-        </p>
-        {children}
+          {image && (
+            <GatsbyImage
+              css={css`
+                border-radius: 10px;
+                margin: 2rem 0 0;
+              `}
+              image={image}
+              alt={data.mdx.frontmatter.thumbnail_image_alt}
+            />
+          )}
+          <p
+            css={css`
+              text-align: center;
+              margin-top: 1rem;
+              margin-bottom: 2rem;
+              font-size: 1.4rem;
+              color: #7f8487;
+              font-style: oblique;
+            `}
+          >
+            이미지 출처 :{" "}
+            <a href={data.mdx.frontmatter.thumbnail_image_credit_link}>
+              {data.mdx.frontmatter.thumbnail_image_credit_text}
+            </a>
+          </p>
+          <main
+            css={css`
+              margin: 6rem 0;
+              & img {
+                width: 60%;
+                display: block;
+                border-radius: 10px;
+                margin: 2rem auto;
+                box-shadow: rgba(0, 0, 0, 0.1) -4px 9px 25px -6px;
+              }
+              & p {
+                font-size: 1.6rem;
+                line-height: 3rem;
+                color: #181818;
+                line-spacing: 0.4px;
+              }
+              & strong {
+                font-weight: 600;
+                letter-spacing: 0.8px;
+              }
+
+              & h1 {
+                font-weight: 600;
+                font-size: 2.8rem;
+                margin: 3rem 0;
+              }
+
+              & h2 {
+                font-weight: 600;
+                font-size: 2.4rem;
+                margin: 3rem 0;
+              }
+              & h3 {
+                font-weight: 600;
+                font-size: 2rem;
+                margin: 3rem 0;
+              }
+              & h4 {
+              }
+              & h5 {
+              }
+              & h6 {
+              }
+              & blockquote {
+                border-radius: 10px;
+                background-color: #f2f2f2;
+                padding: 0.4rem 2rem;
+              }
+              & hr {
+                background-color: #e3e3e3;
+                height: 1.8px;
+                margin: 4rem 0;
+                width: 100%;
+                border: 0;
+              }
+              & ol {
+                background-color: #eef2f5;
+                border-radius: 10px;
+                padding: 2rem 4rem;
+              }
+              & ul {
+                background-color: #eef2f5;
+                border-radius: 10px;
+                padding: 2rem 4rem;
+              }
+              & li {
+                font-size: 1.6rem;
+                line-height: 3rem;
+                color: #181818;
+                line-spacing: 0.4px;
+              }
+              & code {
+                background-color: #eef2f5;
+                border-radius: 10px;
+                padding: 0.4rem 1rem;
+              }
+              & img + em {
+                text-align: center;
+                display: block;
+                margin-top: 1rem;
+                margin-bottom: 2rem;
+                font-size: 1.4rem;
+                color: #7f8487;
+              }
+            `}
+          >
+            {children}
+          </main>
+        </div>
+        <aside
+          css={css`
+            /* From https://css.glass */
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            padding: 2rem;
+            font-size: 1.8rem;
+            line-height: 3rem;
+            word-wrap: break-word;
+          `}
+        >
+          {data.mdx.tableOfContents.items.map(
+            (items: { url: string; title: string }) => {
+              return (
+                <a href={items.url} key={items.title}>
+                  <h3>{items.title}</h3>
+                </a>
+              );
+            }
+          )}
+        </aside>
       </div>
     </Layout>
   );
@@ -59,7 +216,8 @@ export const query = graphql`
     mdx(id: { eq: $id }) {
       frontmatter {
         title
-        date(formatString: "MMMM D, YYYY")
+        tags
+        date(formatString: "YYYY.MM.DD")
         thumbnail_image_alt
         thumbnail_image_credit_link
         thumbnail_image_credit_text
@@ -69,10 +227,21 @@ export const query = graphql`
           }
         }
       }
+      tableOfContents
     }
   }
 `;
 
-export const Head = ({ data }) => <title>{data.mdx.frontmatter.title}</title>;
+export const Head = ({ data }) => (
+  <>
+    <title>{data.mdx.frontmatter.title}</title>
+    <link
+      rel="stylesheet"
+      as="style"
+      crossOrigin=""
+      href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css"
+    />
+  </>
+);
 
 export default BlogPost;
