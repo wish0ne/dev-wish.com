@@ -51,6 +51,9 @@ const BlogPost = ({ data, children }: PageProps<DataProps>) => {
             -webkit-backdrop-filter: blur(5px);
             border: 1px solid rgba(255, 255, 255, 0.3);
             padding: 2rem;
+            @media (max-width: 768px) {
+              width: 100%;
+            }
           `}
         >
           <h1

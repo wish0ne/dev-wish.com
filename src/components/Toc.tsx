@@ -45,6 +45,9 @@ const Toc = ({ tableOfContents }: Props) => {
         position: sticky;
         top: 10rem;
         align-self: flex-start;
+        @media (max-width: 768px) {
+          display: none;
+        }
       `}
     >
       {getSubItems(tableOfContents?.items, 0)}
