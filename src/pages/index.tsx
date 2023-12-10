@@ -78,12 +78,17 @@ const HomePage = ({ data }: PageProps<DataProps>) => {
                         alt={node.frontmatter.thumbnail_image_alt}
                         css={css`
                           border-radius: 10px;
+                          flex: 1;
                           box-shadow: rgba(67, 71, 85, 0.27) 0px 0px 0.25em,
                             rgba(90, 125, 188, 0.05) 0px 0.25em 1em;
                         `}
                       />
                     )}
-                    <div>
+                    <div
+                      css={css`
+                        flex: 1;
+                      `}
+                    >
                       <p
                         css={css`
                           color: gray;

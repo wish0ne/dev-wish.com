@@ -107,30 +107,36 @@ const BlogPost = ({ data, children }: PageProps<DataProps>) => {
               alt={data.mdx.frontmatter.thumbnail_image_alt}
             />
           )}
-          <p
-            css={css`
-              text-align: center;
-              margin-top: 1rem;
-              margin-bottom: 2rem;
-              font-size: 1.4rem;
-              color: #7f8487;
-              font-style: oblique;
-            `}
-          >
-            이미지 출처 :{" "}
-            <a href={data.mdx.frontmatter.thumbnail_image_credit_link}>
-              {data.mdx.frontmatter.thumbnail_image_credit_text}
-            </a>
-          </p>
+          {data.mdx.frontmatter.thumbnail_image_credit_text && (
+            <p
+              css={css`
+                text-align: center;
+                margin-top: 1rem;
+                margin-bottom: 2rem;
+                font-size: 1.4rem;
+                color: #7f8487;
+                font-style: oblique;
+              `}
+            >
+              이미지 출처 :{" "}
+              <a href={data.mdx.frontmatter.thumbnail_image_credit_link}>
+                {data.mdx.frontmatter.thumbnail_image_credit_text}
+              </a>
+            </p>
+          )}
           <main
             css={css`
               margin: 6rem 0;
-              & img {
-                width: 60%;
+              & img,
+              .gatsby-resp-image-wrapper {
+                width: 70%;
                 display: block;
                 border-radius: 10px;
                 margin: 2rem auto;
                 box-shadow: rgba(0, 0, 0, 0.1) -4px 9px 25px -6px;
+                @media (max-width: 768px) {
+                  width: 100%;
+                }
               }
               & p {
                 font-size: 1.6rem;
@@ -169,6 +175,9 @@ const BlogPost = ({ data, children }: PageProps<DataProps>) => {
                 border-radius: 10px;
                 background-color: #f2f2f2;
                 padding: 0.4rem 2rem;
+                @media (max-width: 768px) {
+                  margin: 0;
+                }
               }
               & hr {
                 background-color: #e3e3e3;
@@ -198,13 +207,15 @@ const BlogPost = ({ data, children }: PageProps<DataProps>) => {
                 border-radius: 10px;
                 padding: 0.4rem 1rem;
               }
-              & img + em {
+              & img + em,
+              figcaption {
                 text-align: center;
                 display: block;
                 margin-top: 1rem;
-                margin-bottom: 2rem;
+                margin-bottom: 4rem;
                 font-size: 1.4rem;
                 color: #7f8487;
+                font-style: oblique;
               }
             `}
           >
