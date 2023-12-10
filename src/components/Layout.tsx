@@ -47,15 +47,17 @@ const Layout = ({ children }: Props) => {
             z-index: 10;
           `}
         >
-          <div
+          <Link
+            to="/"
             css={css`
               font-weight: 700;
               font-style: oblique;
               font-size: 2rem;
+              color: black;
             `}
           >
             {data.site.siteMetadata.title}
-          </div>
+          </Link>
           <nav
             css={css`
               justify-content: space-between;
