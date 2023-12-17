@@ -253,12 +253,6 @@ export const query = graphql`
 export const Head = ({ data }: PageProps<DataProps>) => (
   <>
     <title>{data.mdx.frontmatter.title}</title>
-    <link
-      rel="stylesheet"
-      as="style"
-      crossOrigin=""
-      href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css"
-    />
   </>
 );
 

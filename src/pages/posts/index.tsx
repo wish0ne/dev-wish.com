@@ -41,4 +41,8 @@ const PostPage: React.FC<PageProps> = () => {
 
 export default PostPage;
 
-export const Head: HeadFC = () => <title>dev-wish.com</title>;
+export const Head = () => (
+  <>
+    <title>dev-wish.com</title>
+  </>
+);

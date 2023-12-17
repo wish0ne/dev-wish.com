@@ -3,6 +3,8 @@ import { Global, css } from "@emotion/react";
 import { Link, type HeadFC, type PageProps } from "gatsby";
 
 const globalStyles = css`
+  @import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css");
+
   html {
     font-size: 62.5%;
     background-color: #fbfbfb;

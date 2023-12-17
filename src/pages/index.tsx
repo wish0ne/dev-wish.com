@@ -239,14 +239,4 @@ export const query = graphql`
 
 export default HomePage;
 
-export const Head: HeadFC = () => (
-  <>
-    <title>dev-wish.com</title>
-    <link
-      rel="stylesheet"
-      as="style"
-      crossOrigin=""
-      href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css"
-    />
-  </>
-);
+export const Head: HeadFC = () => <title>dev-wish.com</title>;
