@@ -16,7 +16,7 @@ type DataProps = {
   mdx: {
     frontmatter: {
       thumbnail_image: IGatsbyImageData;
-      tags: string;
+      tags: string[];
       title: string;
       date: string;
       thumbnail_image_alt: string;
@@ -79,7 +79,7 @@ const BlogPost = ({ data, children }: PageProps<DataProps>) => {
               margin-top: 1rem;
             `}
           >
-            {data.mdx.frontmatter.tags?.split(" ").map((tag: string) => (
+            {data.mdx.frontmatter.tags.map((tag: string) => (
               <span
                 key={tag}
                 css={css`
@@ -90,7 +90,7 @@ const BlogPost = ({ data, children }: PageProps<DataProps>) => {
                   border-radius: 10px;
                 `}
               >
-                {tag}
+                {`#${tag}`}
               </span>
             ))}
           </div>

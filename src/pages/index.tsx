@@ -81,6 +81,14 @@ const HomePage = ({ data }: PageProps<DataProps>) => {
                           flex: 1;
                           box-shadow: rgba(67, 71, 85, 0.27) 0px 0px 0.25em,
                             rgba(90, 125, 188, 0.05) 0px 0.25em 1em;
+                          object-fit: cover;
+                          @media (max-width: 550px) {
+                            aspect-ratio: 12 / 7;
+                          }
+                          @media (min-width: 551px) and (max-width: 1200px) {
+                            aspect-ratio: 2 / 1;
+                          }
+                          aspect-ratio: 2 / 0.8;
                         `}
                       />
                     )}
@@ -106,22 +114,20 @@ const HomePage = ({ data }: PageProps<DataProps>) => {
                           margin-top: 1rem;
                         `}
                       >
-                        {node.frontmatter.tags
-                          ?.split(" ")
-                          .map((tag: string) => (
-                            <span
-                              key={tag}
-                              css={css`
-                                font-size: 1.4rem;
-                                color: #7c93c3;
-                                background-color: #eef5ff;
-                                padding: 0.4rem;
-                                border-radius: 10px;
-                              `}
-                            >
-                              {tag}
-                            </span>
-                          ))}
+                        {node.frontmatter.tags.map((tag: string) => (
+                          <span
+                            key={tag}
+                            css={css`
+                              font-size: 1.4rem;
+                              color: #7c93c3;
+                              background-color: #eef5ff;
+                              padding: 0.4rem;
+                              border-radius: 10px;
+                            `}
+                          >
+                            {`#${tag}`}
+                          </span>
+                        ))}
                       </div>
 
                       <h2
