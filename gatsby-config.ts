@@ -8,6 +8,8 @@ dotenv.config({
 const config: GatsbyConfig = {
   siteMetadata: {
     title: `dev-wish.com`,
+    description: "dev-wish.com",
+    image: `src/images/icon.png`,
     siteUrl: "https://wish0ne.github.io/",
   },
   // More easily incorporate content into your pages through automatic TypeScript type generation and better GraphQL IntelliSense.

@@ -27,10 +27,8 @@ const PostPage = ({ data }: PageProps<DataProps>) => {
     if (selectedTag === "전체") {
       setPosts(data.allMdx.nodes);
     } else {
-      console.log(selectedTag, posts);
       const newPosts: DataProps["allMdx"]["nodes"] = [];
       data.allMdx.nodes.forEach((post) => {
-        console.log(post.frontmatter.tags);
         if (post.frontmatter.tags.includes(selectedTag)) {
           newPosts.push(post);
         }

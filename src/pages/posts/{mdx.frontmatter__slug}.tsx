@@ -251,6 +251,11 @@ const BlogPost = ({ data, children }: PageProps<DataProps>) => {
                   text-align: center;
                 }
               }
+              & a {
+                font-size: 1.4rem;
+                text-decoration: underline;
+                color: #3498db;
+              }
               .gatsby-highlight pre {
                 border-radius: 10px;
                 font-size: 1.4rem;
