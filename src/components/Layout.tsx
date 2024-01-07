@@ -100,6 +100,9 @@ const Layout = ({ children }: Props) => {
       <main
         css={css`
           margin: 10rem 4rem;
+          @media (max-width: 768px) {
+            margin: 10rem 1rem;
+          }
           scroll-padding-top: 10rem;
           scroll-margin-top: 10rem;
         `}

@@ -36,6 +36,16 @@ const config: GatsbyConfig = {
               showCaptions: true,
             },
           },
+          {
+            resolve: `gatsby-remark-prismjs`,
+            options: {
+              noInlineHighlight: true,
+            },
+          },
+          {
+            resolve: "gatsby-remark-code-buttons",
+            options: {},
+          },
         ],
       },
     },
@@ -81,7 +91,18 @@ const config: GatsbyConfig = {
     {
       resolve: `gatsby-transformer-remark`,
       options: {
-        plugins: [`gatsby-remark-autolink-headers`],
+        plugins: [
+          `gatsby-remark-autolink-headers`,
+          `gatsby-remark-code-buttons`,
+          {
+            resolve: `gatsby-remark-prismjs`,
+            options: {},
+          },
+          {
+            resolve: "gatsby-remark-code-buttons",
+            options: {},
+          },
+        ],
       },
     },
   ],

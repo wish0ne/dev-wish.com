@@ -52,7 +52,7 @@ const BlogPost = ({ data, children }: PageProps<DataProps>) => {
             border: 1px solid rgba(255, 255, 255, 0.3);
             padding: 2rem;
             @media (max-width: 768px) {
-              width: 100%;
+              flex: 1;
             }
           `}
         >
@@ -216,6 +216,47 @@ const BlogPost = ({ data, children }: PageProps<DataProps>) => {
                 font-size: 1.4rem;
                 color: #7f8487;
                 font-style: oblique;
+              }
+              & details summary {
+                font-size: 1.4rem;
+                font-weight: 600;
+                color: gray;
+                font-style: oblique;
+              }
+              & details p {
+                border-radius: 10px;
+                background-color: #f2f2f2;
+                padding: 0.4rem 2rem;
+                @media (max-width: 768px) {
+                  margin: 0;
+                }
+              }
+              & table {
+                width: 100%;
+                background-color: #fefefe;
+                font-size: 1.4rem;
+                border-radius: 10px;
+                border-collapse: collapse;
+                th {
+                  border-bottom: solid 1px black;
+                }
+                td {
+                  border-top: solid 1px #dedede;
+                }
+                td,
+                th {
+                  padding: 0.8rem 0.4rem;
+                }
+                tr {
+                  text-align: center;
+                }
+              }
+              .gatsby-highlight pre {
+                border-radius: 10px;
+                font-size: 1.4rem;
+              }
+              .gatsby-highlight code {
+                background-color: transparent;
               }
             `}
           >

@@ -29,9 +29,11 @@
     "gatsby-plugin-sitemap": "^6.12.0",
     "gatsby-remark-autolink-headers": "^6.12.3",
     "gatsby-remark-images": "^7.12.3",
+    "gatsby-remark-prismjs": "^7.13.0",
     "gatsby-source-filesystem": "^5.12.0",
-    "gatsby-transformer-remark": "^6.12.3",
+    "gatsby-transformer-remark": "^6.13.0",
     "gatsby-transformer-sharp": "^5.12.0",
+    "prismjs": "^1.29.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
@@ -39,6 +41,7 @@
     "@types/node": "^20.3.3",
     "@types/react": "^18.2.14",
     "@types/react-dom": "^18.2.6",
+    "gatsby-remark-code-buttons": "^2.0.7",
     "typescript": "^5.1.6"
   }
 }
