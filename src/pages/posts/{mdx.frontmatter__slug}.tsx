@@ -166,6 +166,9 @@ const BlogPost = ({ data, children }: PageProps<DataProps>) => {
                 margin: 3rem 0;
               }
               & h4 {
+                font-weight: 600;
+                font-size: 1.8rem;
+                margin: 3rem 0;
               }
               & h5 {
               }
