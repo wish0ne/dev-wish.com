@@ -207,93 +207,121 @@ const HomePage = ({ data: { recently, recommend } }: PageProps<DataProps>) => {
               >
                 Recommend.
               </h1>
-              <Link
-                to={`/posts/${recommend.nodes[0].frontmatter.slug}`}
-                key={recommend.nodes[0].id}
-                css={css`
-                  display: flex;
-                  @media (max-width: 550px) {
-                    flex-direction: column;
-                  }
-                  gap: 2rem;
-                `}
-              >
-                {recommendImage && (
-                  <GatsbyImage
-                    image={recommendImage}
-                    alt={recommend.nodes[0].frontmatter.thumbnail_image_alt}
-                    css={css`
-                      border-radius: 10px;
-                      flex: 1;
-                      box-shadow: rgba(67, 71, 85, 0.27) 0px 0px 0.25em,
-                        rgba(90, 125, 188, 0.05) 0px 0.25em 1em;
-                      object-fit: cover;
-                      @media (max-width: 550px) {
-                        aspect-ratio: 12 / 7;
-                      }
-                      @media (min-width: 551px) and (max-width: 1200px) {
-                        aspect-ratio: 2 / 1;
-                      }
-                      aspect-ratio: 2 / 0.8;
-                    `}
-                  />
-                )}
-                <div
+              {recommend.nodes[0] ? (
+                <Link
+                  to={`/posts/${recommend.nodes[0].frontmatter.slug}`}
+                  key={recommend.nodes[0].id}
                   css={css`
-                    flex: 1;
+                    display: flex;
+                    @media (max-width: 550px) {
+                      flex-direction: column;
+                    }
+                    gap: 2rem;
                   `}
                 >
+                  {recommendImage && (
+                    <GatsbyImage
+                      image={recommendImage}
+                      alt={recommend.nodes[0].frontmatter.thumbnail_image_alt}
+                      css={css`
+                        border-radius: 10px;
+                        flex: 1;
+                        box-shadow: rgba(67, 71, 85, 0.27) 0px 0px 0.25em,
+                          rgba(90, 125, 188, 0.05) 0px 0.25em 1em;
+                        object-fit: cover;
+                        @media (max-width: 550px) {
+                          aspect-ratio: 12 / 7;
+                        }
+                        @media (min-width: 551px) and (max-width: 1200px) {
+                          aspect-ratio: 2 / 1;
+                        }
+                        aspect-ratio: 2 / 0.8;
+                      `}
+                    />
+                  )}
                   <div
                     css={css`
-                      display: flex;
-                      gap: 1rem;
-                      margin-top: 1rem;
+                      flex: 1;
                     `}
                   >
-                    {recommend.nodes[0].frontmatter.tags.map((tag: string) => (
-                      <span
-                        key={tag}
-                        css={css`
-                          font-size: 1.4rem;
-                          color: #7c93c3;
-                          background-color: #eef5ff;
-                          padding: 0.4rem;
-                          border-radius: 10px;
-                        `}
-                      >
-                        {`#${tag}`}
-                      </span>
-                    ))}
+                    <div
+                      css={css`
+                        display: flex;
+                        gap: 1rem;
+                        margin-top: 1rem;
+                      `}
+                    >
+                      {recommend.nodes[0].frontmatter.tags.map(
+                        (tag: string) => (
+                          <span
+                            key={tag}
+                            css={css`
+                              font-size: 1.4rem;
+                              color: #7c93c3;
+                              background-color: #eef5ff;
+                              padding: 0.4rem;
+                              border-radius: 10px;
+                            `}
+                          >
+                            {`#${tag}`}
+                          </span>
+                        )
+                      )}
+                    </div>
+                    <h2
+                      css={css`
+                        color: black;
+                      `}
+                    >
+                      {recommend.nodes[0].frontmatter.title}
+                    </h2>
+
+                    <p
+                      css={css`
+                        color: gray;
+                        font-size: 1.2rem;
+                        margin: 0;
+                      `}
+                    >
+                      {recommend.nodes[0].frontmatter.date}
+                    </p>
+
+                    <p
+                      css={css`
+                        font-size: 1.4rem;
+                        color: #3d3b40;
+                        line-height: 2rem;
+                      `}
+                    >
+                      {recommend.nodes[0].excerpt}
+                    </p>
                   </div>
-                  <h2
+                </Link>
+              ) : (
+                <div
+                  css={css`
+                    text-align: center;
+                  `}
+                >
+                  <h1
                     css={css`
-                      color: black;
+                      font-size: 3rem;
+                      color: lightgray;
                     `}
                   >
-                    {recommend.nodes[0].frontmatter.title}
-                  </h2>
-
-                  <p
+                    ( ˘•̥ _•̥ ˘ )
+                  </h1>
+                  <h1
                     css={css`
+                      font-size: 1.6rem;
                       color: gray;
-                      font-size: 1.2rem;
-                      margin: 0;
+                      font-weight: 500;
                     `}
                   >
-                    {recommend.nodes[0].frontmatter.date}
-                  </p>
-
-                  <p
-                    css={css`
-                      font-size: 1.4rem;
-                      color: #3d3b40;
-                      line-height: 2rem;
-                    `}
-                  >
-                    {recommend.nodes[0].excerpt}
-                  </p>
+                    포스트를 불러오지 못했습니다.
+                  </h1>
                 </div>
-              </Link>
+              )}
             </div>
             <div
               css={css`
