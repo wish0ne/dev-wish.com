@@ -347,9 +347,9 @@ const HomePage = ({ data: { recently, recommend } }: PageProps<DataProps>) => {
               </h1>
               <h1
                 css={css`
-                  font-size: 1.8rem;
+                  font-size: 1.6rem;
                   color: gray;
-                  font-weight: 600;
+                  font-weight: 500;
                 `}
               >
                 준비중입니다.
@@ -383,7 +383,7 @@ export const query = graphql`
       }
     }
     recommend: allMdx(
-      filter: { id: { eq: "d3a3e652-33b9-5601-bc40-b2eb03eeee0c" } }
+      filter: { frontmatter: { slug: { eq: "how-became-a-developer" } } }
     ) {
       nodes {
         frontmatter {

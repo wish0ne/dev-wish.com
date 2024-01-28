@@ -57,35 +57,41 @@ const PostPage = ({ data }: PageProps<DataProps>) => {
           <Tags selectedTag={selectedTag} setSelectedTag={setSelectedTag} />
           <div
             css={css`
-              /* From https://css.glass */
-              background: rgba(255, 255, 255, 0.2);
-              border-radius: 20px;
-              box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-              backdrop-filter: blur(5px);
-              -webkit-backdrop-filter: blur(5px);
-              border: 1px solid rgba(255, 255, 255, 0.3);
-              padding: 2rem;
+              display: grid;
+              @media (max-width: 550px) {
+                grid-template-columns: 1fr;
+              }
+              @media (min-width: 551px) and (max-width: 1400px) {
+                grid-template-columns: 1fr 1fr;
+              }
+              grid-template-columns: 1fr 1fr 1fr;
+              gap: 4rem;
             `}
           >
-            <div
-              css={css`
-                display: flex;
-                flex-direction: column;
-                gap: 4rem;
-              `}
-            >
-              {posts.map((node) => {
-                const image = getImage(node.frontmatter.thumbnail_image);
-                return (
+            {posts.map((node) => {
+              const image = getImage(node.frontmatter.thumbnail_image);
+              return (
+                <div
+                  css={css`
+                    /* From https://css.glass */
+                    background: rgba(255, 255, 255, 0.2);
+                    border-radius: 20px;
+                    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+                    backdrop-filter: blur(5px);
+                    -webkit-backdrop-filter: blur(5px);
+                    border: 1px solid rgba(255, 255, 255, 0.3);
+                    padding: 2rem;
+                  `}
+                >
                   <Link
                     to={`/posts/${node.frontmatter.slug}`}
                     key={node.id}
                     css={css`
                       display: flex;
-                      @media (max-width: 550px) {
+                      flex-direction: column;
+                      flex-direction @media (max-width: 550px) {
                         flex-direction: column;
                       }
-                      gap: 2rem;
                     `}
                   >
                     {image && (
@@ -101,9 +107,38 @@ const PostPage = ({ data }: PageProps<DataProps>) => {
                         `}
                       />
                     )}
+                    <h2
+                      css={css`
+                        color: black;
+                        font-size: 1.8rem;
+                        margin-bottom: 0;
+                      `}
+                    >
+                      {node.frontmatter.title}
+                    </h2>
+                    <p
+                      css={css`
+                        font-size: 1.4rem;
+                        color: black;
+                      `}
+                    >
+                      {node.frontmatter.subtitle}
+                    </p>
                     <div
                       css={css`
-                        flex: 1;
+                        display: flex;
+                        align-items: center;
+                        justify-content: space-between;
+                        @media (min-width: 1400px) and (max-width: 1650px) {
+                          flex-direction: column;
+                          align-items: start;
+                          gap: 1rem;
+                        }
+                        @media (min-width: 769px) and (max-width: 1100px) {
+                          flex-direction: column;
+                          align-items: start;
+                          gap: 1rem;
+                        }
                       `}
                     >
                       <p
@@ -115,12 +150,10 @@ const PostPage = ({ data }: PageProps<DataProps>) => {
                       >
                         {node.frontmatter.date}
                       </p>
-
                       <div
                         css={css`
                           display: flex;
                           gap: 1rem;
-                          margin-top: 1rem;
                         `}
                       >
                         {node.frontmatter.tags.map((tag: string) => (
@@ -138,27 +171,11 @@ const PostPage = ({ data }: PageProps<DataProps>) => {
                           </span>
                         ))}
                       </div>
-
-                      <h2
-                        css={css`
-                          color: black;
-                        `}
-                      >
-                        {node.frontmatter.title}
-                      </h2>
-                      <p
-                        css={css`
-                          font-size: "1.8rem";
-                          color: black;
-                        `}
-                      >
-                        {node.frontmatter.subtitle}
-                      </p>
                     </div>
                   </Link>
-                );
-              })}
-            </div>
+                </div>
+              );
+            })}
           </div>
         </div>
       </div>
