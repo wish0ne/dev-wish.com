@@ -265,6 +265,7 @@ const BlogPost = ({ data, children }: PageProps<DataProps>) => {
               }
               .gatsby-highlight code {
                 background-color: transparent;
+                padding: 0;
               }
             `}
           >
