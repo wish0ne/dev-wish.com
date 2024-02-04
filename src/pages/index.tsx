@@ -62,7 +62,7 @@ const HomePage = ({ data: { recently, recommend } }: PageProps<DataProps>) => {
                   font-style: oblique;
                 `}
               >
-                ALL.
+                Recent.
               </h1>
 
               <Link
