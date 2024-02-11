@@ -77,8 +77,9 @@ jobs:
         run: ${{ steps.detect-package-manager.outputs.manager }} ${{ steps.detect-package-manager.outputs.command }}
       - name: Build with Gatsby
         env:
-          PREFIX_PATHS: 'true'
+          PREFIX_PATHS: "true"
           GA_TRACKING_ID: ${{secrets.GA_TRACKING_ID}}
+          NAVER_SITE_VERIFICATION_KEY: ${{secrets.NAVER_SITE_VERIFICATION_KEY}}
         run: ${{ steps.detect-package-manager.outputs.manager }} run build
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v2

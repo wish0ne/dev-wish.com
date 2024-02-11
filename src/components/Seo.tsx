@@ -47,6 +47,10 @@ export const SEO = ({
       />
       <meta name="robots" content="index, follow" />
       <meta name="image" content={seo.image} />
+      <meta
+        name="naver-site-verification"
+        content={process.env.REACT_APP_NAVER_SITE_VERIFICATION_KEY}
+      />
       <meta property="og:title" content={seo.title} />
       <meta property="twitter:title" content={seo.title} />
       <meta property="og:description" content={seo.description} />
