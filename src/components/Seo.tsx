@@ -49,7 +49,7 @@ export const SEO = ({
       <meta name="image" content={seo.image} />
       <meta
         name="naver-site-verification"
-        content={process.env.REACT_APP_NAVER_SITE_VERIFICATION_KEY}
+        content="e706971f3c277563d33ab8325f883db834a4c132"
       />
       <meta property="og:title" content={seo.title} />
       <meta property="twitter:title" content={seo.title} />
