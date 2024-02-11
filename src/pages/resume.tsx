@@ -3,6 +3,7 @@ import { css } from "@emotion/react";
 import type { HeadFC, PageProps } from "gatsby";
 import Layout from "../components/Layout";
 import { StaticImage } from "gatsby-plugin-image";
+import { SEO } from "../components/Seo";
 
 const ResumePage: React.FC<PageProps> = () => {
   return (
@@ -41,4 +42,4 @@ const ResumePage: React.FC<PageProps> = () => {
 
 export default ResumePage;
 
-export const Head: HeadFC = () => <title>dev-wish.com</title>;
+export const Head: HeadFC = () => <SEO />;

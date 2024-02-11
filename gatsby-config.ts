@@ -8,9 +8,10 @@ dotenv.config({
 const config: GatsbyConfig = {
   siteMetadata: {
     title: `dev-wish.com`,
-    description: "dev-wish.com",
+    description: "위시 장 기술 블로그",
     image: `src/images/icon.png`,
     siteUrl: "https://wish0ne.github.io/",
+    keywords: ["기술 블로그, 개발 블로그"],
   },
   // More easily incorporate content into your pages through automatic TypeScript type generation and better GraphQL IntelliSense.
   // If you use VSCode you can also use the GraphQL plugin
@@ -20,6 +21,7 @@ const config: GatsbyConfig = {
     "gatsby-plugin-emotion",
     "gatsby-plugin-image",
     "gatsby-plugin-sitemap",
+    "gatsby-plugin-robots-txt",
     {
       resolve: "gatsby-plugin-manifest",
       options: {

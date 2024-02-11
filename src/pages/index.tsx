@@ -3,6 +3,7 @@ import { Global, css } from "@emotion/react";
 import { Link, type HeadFC, type PageProps, graphql } from "gatsby";
 import Layout from "../components/Layout";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
+import { SEO } from "../components/Seo";
 
 type DataProps = {
   recently: {
@@ -408,4 +409,4 @@ export const query = graphql`
 
 export default HomePage;
 
-export const Head: HeadFC = () => <title>dev-wish.com</title>;
+export const Head: HeadFC = () => <SEO />;

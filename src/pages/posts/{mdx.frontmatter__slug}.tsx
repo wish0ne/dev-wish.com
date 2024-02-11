@@ -5,6 +5,7 @@ import { GatsbyImage, getImage, IGatsbyImageData } from "gatsby-plugin-image";
 import { css } from "@emotion/react";
 import Toc from "../../components/Toc";
 import Comments from "../../components/Comments";
+import { SEO } from "../../components/Seo";
 
 interface toc {
   title: string;
@@ -15,9 +16,10 @@ interface toc {
 type DataProps = {
   mdx: {
     frontmatter: {
-      thumbnail_image: IGatsbyImageData;
+      thumbnail_image: { publicURL: string & IGatsbyImageData };
       tags: string[];
       title: string;
+      subtitle: string;
       date: string;
       thumbnail_image_alt: string;
       thumbnail_image_credit_link: string;
@@ -284,6 +286,7 @@ export const query = graphql`
     mdx(id: { eq: $id }) {
       frontmatter {
         title
+        subtitle
         tags
         date(formatString: "YYYY.MM.DD")
         thumbnail_image_alt
@@ -293,6 +296,7 @@ export const query = graphql`
           childImageSharp {
             gatsbyImageData
           }
+          publicURL
         }
       }
       tableOfContents
@@ -301,9 +305,13 @@ export const query = graphql`
 `;
 
 export const Head = ({ data }: PageProps<DataProps>) => (
-  <>
-    <title>{data.mdx.frontmatter.title}</title>
-  </>
+  <SEO
+    title={data.mdx.frontmatter.title}
+    description={data.mdx.frontmatter.subtitle}
+    keywords={data.mdx.frontmatter.tags}
+    publishDate={data.mdx.frontmatter.date}
+    image={data.mdx.frontmatter.thumbnail_image.publicURL}
+  />
 );
 
 export default BlogPost;

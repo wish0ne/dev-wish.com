@@ -10,6 +10,7 @@ import {
 import Layout from "../../components/Layout";
 import { StaticImage, GatsbyImage, getImage } from "gatsby-plugin-image";
 import Tags from "../../components/Tags";
+import { SEO } from "../../components/Seo";
 
 type DataProps = {
   allMdx: {
@@ -209,8 +210,4 @@ export const query = graphql`
 
 export default PostPage;
 
-export const Head = () => (
-  <>
-    <title>dev-wish.com</title>
-  </>
-);
+export const Head = () => <SEO />;
