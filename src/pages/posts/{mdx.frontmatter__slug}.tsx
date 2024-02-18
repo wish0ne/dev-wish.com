@@ -257,7 +257,7 @@ const BlogPost = ({ data, children }: PageProps<DataProps>) => {
                 }
               }
               & a {
-                font-size: 1.4rem;
+                font-size: 1.6rem;
                 text-decoration: underline;
                 color: #3498db;
               }
