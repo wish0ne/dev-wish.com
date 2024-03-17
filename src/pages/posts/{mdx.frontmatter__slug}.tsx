@@ -213,7 +213,8 @@ const BlogPost = ({ data, children }: PageProps<DataProps>) => {
                 padding: 0.4rem 1rem;
               }
               & img + em,
-              figcaption {
+              figcaption,
+              figcaption p {
                 text-align: center;
                 display: block;
                 margin-top: 1rem;
